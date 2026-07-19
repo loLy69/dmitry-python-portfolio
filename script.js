@@ -55,4 +55,11 @@ window.addEventListener('scroll', () => {
   document.querySelectorAll('.float-shot').forEach((shot, i) => {
     shot.style.marginTop = `${Math.sin(y / 260 + i) * 12}px`;
   });
+  const portrait = document.querySelector('[data-parallax="portrait"]');
+  if (portrait) {
+    const rect = portrait.parentElement.getBoundingClientRect();
+    const progress = Math.max(-1, Math.min(1, -rect.top / window.innerHeight));
+    portrait.style.translate = `0 ${progress * 34}px`;
+    portrait.style.rotate = `${-3 + progress * 2}deg`;
+  }
 }, { passive: true });
